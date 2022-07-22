@@ -130,6 +130,7 @@ export function createItem(name, tags, cost) {
 		},
 	};
 	STORE_ITEMS.push(newItem);
+	return newItem;
 }
 
 export function updateItem(id, name, cost) {
