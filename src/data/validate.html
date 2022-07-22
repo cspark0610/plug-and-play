@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>BG Frontend Validation tool</title>
+	<style type="text/css">
+		h1{color:#0eb5fe;width:100%;text-align:center}h2{color:#0eb5fe;width:100%;text-align:center;font-style:italic}.listing{display:flex;flex-direction:column}.item{display:flex;justify-content:center;align-items:center;margin:5px}.ok-status{color:green;font-style:italic;margin-left:5px}.error-status{color:red;font-style:italic;margin-left:5px}.bold{font-weight:bold}.item .ok-status{display:none}.item.ok .ok-status{display:block}.item.ok .error-status{display:none}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<h1>BG Frontend Validation tool</h1>
+		<div class="listing">
+			<h2>Exercise 1</h2>
+			<div id="getItem" class="item">
+				<div class="method">Validating <span class="bold">getItem()</span> ..    </div>
+				<div class="ok-status">OK</div>
+				<div class="error-status">ERROR..</div>
+			</div>
+			<div id="createItem" class="item">
+				<div class="method">Validating <span class="bold">createItem()</span>..    </div>
+				<div class="ok-status">OK</div>
+				<div class="error-status">ERROR..</div>
+			</div>
+			<div id="updateItem" class="item">
+				<div class="method">Validating <span class="bold">updateItem()</span>..    </div>
+				<div class="ok-status">OK</div>
+				<div class="error-status">ERROR..</div>
+			</div>
+			<div id="deleteItem" class="item">
+				<div class="method">Validating <span class="bold">deleteItem()</span>..    </div>
+				<div class="ok-status">OK</div>
+				<div class="error-status">ERROR..</div>
+			</div>
+			<div id="getItemById" class="item">
+				<div class="method">Validating <span class="bold">getItemById()</span>..    </div>
+				<div class="ok-status">OK</div>
+				<div class="error-status">ERROR..</div>
+			</div>
+			<h2>Exercise 2</h2>
+			<div id="getItemsByTags" class="item">
+				<div class="method">Validating <span class="bold">getItemsByTags()</span>..    </div>
+				<div class="ok-status">OK</div>
+				<div class="error-status">ERROR..</div>
+			</div>
+			<div id="updateHatsPrice" class="item">
+				<div class="method">Validating <span class="bold">updateHatsPrice()</span>..    </div>
+				<div class="ok-status">OK</div>
+				<div class="error-status">ERROR..</div>
+			</div>
+			<div id="deleteAllGoals" class="item">
+				<div class="method">Validating <span class="bold">deleteAllGoals()</span>..    </div>
+				<div class="ok-status">OK</div>
+				<div class="error-status">ERROR..</div>
+			</div>
+		</div>
+	</div>
+</body>
+<script type="text/javascript" src="store.js"></script>
+<script type="text/javascript">
+function deepEqual(t,e){const a=Object.keys(t),s=Object.keys(e);if(a.length!==s.length)return!1;for(const s of a){const a=t[s],o=e[s],l=isObject(a)&&isObject(o);if(l&&!deepEqual(a,o)||!l&&a!==o)return!1}return!0}function isObject(t){return null!=t&&"object"==typeof t}function validateCreateItem(){var t=JSON.parse(JSON.stringify(STORE_ITEMS));createItem("testId","testItem",["t1","t2"],10);var e=null!=STORE_ITEMS.find(t=>"testId"===Object.keys(t)[0]);return STORE_ITEMS=JSON.parse(JSON.stringify(t)),e}function validateUpdateItem(){var t=JSON.parse(JSON.stringify(STORE_ITEMS));updateItem("hat_cowboy","testName",99);var e=STORE_ITEMS.find(t=>"hat_cowboy"===Object.keys(t)[0]);return STORE_ITEMS=JSON.parse(JSON.stringify(t)),null!=e&&("testName"===e.hat_cowboy.name&&99===e.hat_cowboy.cost)}function validateDeleteItem(){var t=JSON.parse(JSON.stringify(STORE_ITEMS));deleteItem("goal_ring");var e=void 0===STORE_ITEMS.find(t=>"goal_ring"===Object.keys(t)[0]);return STORE_ITEMS=JSON.parse(JSON.stringify(t)),e}function validateGetItemById(){var t=JSON.parse(JSON.stringify(STORE_ITEMS)),e=getItemById("tool_shovel");return STORE_ITEMS=JSON.parse(JSON.stringify(t)),deepEqual(e,{tool_shovel:{id:"tool_shovel",name:"Shovel",tags:["tool"],cost:30}})}function validateGetItemByTags(){var t=JSON.parse(JSON.stringify(STORE_ITEMS)),e=getItemsByTags(["blue","clothing"]);return STORE_ITEMS=JSON.parse(JSON.stringify(t)),null!=e&&2==e.length}function validateUpdateHats(){var t=JSON.parse(JSON.stringify(STORE_ITEMS));updateHatsPrice();var e=STORE_ITEMS.find(t=>"hat_cowboy"===Object.keys(t)[0]),a=STORE_ITEMS.find(t=>"hat_crown"===Object.keys(t)[0]);return STORE_ITEMS=JSON.parse(JSON.stringify(t)),20==e.hat_cowboy.cost&&100==a.hat_crown.cost}function validateDeleteAllGoals(){JSON.parse(JSON.stringify(STORE_ITEMS));return deleteAllGoals(),0===STORE_ITEMS.length}try{getItems()==STORE_ITEMS&&document.getElementById("getItem").classList.add("ok")}catch(t){console.log(t)}try{validateCreateItem()&&document.getElementById("createItem").classList.add("ok")}catch(t){console.log(t)}try{validateUpdateItem()&&document.getElementById("updateItem").classList.add("ok")}catch(t){console.log(t)}try{validateDeleteItem()&&document.getElementById("deleteItem").classList.add("ok")}catch(t){console.log(t)}try{validateGetItemById()&&document.getElementById("getItemById").classList.add("ok")}catch(t){console.log(t)}try{validateGetItemByTags()&&document.getElementById("getItemsByTags").classList.add("ok")}catch(t){console.log(t)}try{validateUpdateHats()&&document.getElementById("updateHatsPrice").classList.add("ok")}catch(t){console.log(t)}try{validateDeleteAllGoals()&&document.getElementById("deleteAllGoals").classList.add("ok")}catch(t){console.log(t)}
+</script>
+</html>
+
