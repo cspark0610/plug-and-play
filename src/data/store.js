@@ -120,6 +120,11 @@ export function getItems() {
 	});
 }
 
+// id: "shirt_red",
+export function getItemById(id) {
+	return getItems().find((item) => item.id === id);
+}
+
 export function createItem(name, tags, cost) {
 	const newItem = {
 		id: name.toLowerCase(),
@@ -127,28 +132,22 @@ export function createItem(name, tags, cost) {
 		tags: tags.split(", "),
 		cost: cost,
 	};
-	STORE_ITEMS.push(newItem);
+	// STORE_ITEMS.push(newItem);
 	return newItem;
 }
 
 export function updateItem(id, name, cost) {
 	const item = getItemById(id);
 	const newItem = {
-		[id]: {
-			id: id,
-			name: name,
-			cost: cost,
-		},
+		id: name.toLowerCase(),
+		name: name,
+		tags: item.tags,
+		cost: cost,
 	};
 	Object.assign(item, newItem);
 	return newItem;
 }
 
 export function deleteItem(id) {
-	return STORE_ITEMS.filter((item) => item.id !== id);
-}
-
-// id: "shirt_red",
-export function getItemById(id) {
-	return STORE_ITEMS.find((item) => item.id === id);
+	return getItems().filter((item) => item.id !== id);
 }
