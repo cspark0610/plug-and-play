@@ -1,19 +1,22 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { createItem } from "./data/store";
+import { AppSetStateContext } from "./state/AppState";
 
 const ItemCreate = () => {
 	const [name, setName] = useState("");
 	const [price, setPrice] = useState(0);
 	const [tags, setTags] = useState("");
-	const [newItem, setNewItem] = useState({});
+	const setState = useContext(AppSetStateContext);
 
 	const onSubmit = async (event) => {
 		event.preventDefault();
 		const newItem = createItem(name, tags, price);
-		setNewItem(newItem);
+
 		setName("");
 		setTags("");
 		setPrice(0);
+		// use the setState addItem function to add the new item to the state
+		setState.addItem(newItem);
 	};
 
 	return (

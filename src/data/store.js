@@ -112,22 +112,20 @@ export function getItems() {
 	return STORE_ITEMS.map((item) => {
 		const i = Object.values(item);
 		return {
-			id: i[0]?.id,
-			name: i[0]?.name,
-			tags: i[0]?.tags,
-			cost: i[0]?.cost,
+			id: i[0].id,
+			name: i[0].name,
+			tags: i[0].tags,
+			cost: i[0].cost,
 		};
 	});
 }
 
 export function createItem(name, tags, cost) {
 	const newItem = {
-		[name]: {
-			id: name.toLowerCase(),
-			name: name,
-			tags: tags.split(", "),
-			cost: cost,
-		},
+		id: name.toLowerCase(),
+		name: name,
+		tags: tags.split(", "),
+		cost: cost,
 	};
 	STORE_ITEMS.push(newItem);
 	return newItem;

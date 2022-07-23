@@ -1,14 +1,17 @@
 import ItemCreate from "./ItemCreate";
 import ItemList from "./ItemList";
+import AppStateProvider from "./state/AppState";
 
 const App = () => {
 	return (
-		<div className="container">
-			<h1>Create Item</h1>
-			<ItemCreate />
-			<hr />
-			<ItemList />
-		</div>
+		<AppStateProvider>
+			<div className="container">
+				<h1>Create Item</h1>
+				<ItemCreate />
+				<hr />
+				<ItemList />
+			</div>
+		</AppStateProvider>
 	);
 };
 
