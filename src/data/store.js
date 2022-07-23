@@ -127,6 +127,11 @@ export function deleteAllGoals() {
 	return items.filter((item) => !item.id.includes("goal"));
 }
 
+export function removeAllHats() {
+	const items = getItems();
+	return items.filter((item) => !item.id.startsWith("hat"));
+}
+
 export function updateHatsPrice() {
 	const hatsItems = getItems().filter((item) => item.id.startsWith("hat"));
 	return hatsItems.map((item) => {

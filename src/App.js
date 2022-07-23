@@ -1,3 +1,4 @@
+import HatsUpdatePrice from "./HatsUpdatePrice";
 import ItemCreate from "./ItemCreate";
 import ItemList from "./ItemList";
 import AppStateProvider from "./state/AppState";
@@ -8,6 +9,8 @@ const App = () => {
 			<div className="container">
 				<h1>Create Item</h1>
 				<ItemCreate />
+				<hr />
+				<HatsUpdatePrice />
 				<hr />
 				<ItemList />
 			</div>

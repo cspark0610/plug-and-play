@@ -1,5 +1,5 @@
 import { createContext, useState } from "react";
-import { getItems } from "../data/store";
+import { getItems, removeAllHats, updateHatsPrice } from "../data/store";
 
 /*
 {
@@ -25,8 +25,8 @@ const AppStateProvider = ({ children }) => {
 	};
 
 	const removeItem = (id) => {
-		const newItems = [...items];
-		delete newItems[id];
+		const copy = [...items];
+		const newItems = copy.filter((item) => item.id !== id);
 		setItems(newItems);
 	};
 
@@ -34,9 +34,17 @@ const AppStateProvider = ({ children }) => {
 		setItems(items.map((item) => (item.id === updatedItem.id ? updatedItem : item)));
 	};
 
+	const updateHats = () => {
+		const updated = updateHatsPrice();
+		const removedHats = removeAllHats();
+		setItems([...removedHats, ...updated]);
+	};
+
 	return (
 		<AppStateContext.Provider value={items}>
-			<AppSetStateContext.Provider value={{ addItem, removeItem, updateItem }}>{children}</AppSetStateContext.Provider>
+			<AppSetStateContext.Provider value={{ addItem, removeItem, updateItem, updateHats }}>
+				{children}
+			</AppSetStateContext.Provider>
 		</AppStateContext.Provider>
 	);
 };

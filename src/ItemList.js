@@ -1,3 +1,4 @@
+import ItemDelete from "./ItemDelete";
 import { AppStateContext } from "./state/AppState";
 
 const ItemList = () => {
@@ -8,10 +9,12 @@ const ItemList = () => {
 				<div className="card" style={{ width: "30%", marginBottom: "20px" }} key={item.id}>
 					<div className="card-body">
 						<h3>Item Card</h3>
+						<p>Id: {item.id}</p>
 						<p>Name: {item.name}</p>
 						<p>Tags: {item.tags.join(", ")}</p>
 						<p>Cost: {item.cost}</p>
 					</div>
+					<ItemDelete itemId={item.id} />
 				</div>
 			);
 		});
