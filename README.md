@@ -2,6 +2,24 @@
 
 ### npm install
 
+# readme
+
+1.
+2. BG JavaScript Test 2022
+   Implement the methods in store.js : getItems, getItemById, createItem, updateItem, deleteItem.
+   Add this methods to store.js:
+   a. getItemsByTags: given an array of tags, will return an array of items
+   containing every tag in the input array.
+   b. updateHatsPrice: double the cost of every hat.
+   c. deleteAllGoals: deletes every goal.
+   Add a method that will check if an item has stock in our warehouse: checkAvailability Use this API: http://pdev-gojiverse.bluegoji.com/stock/{id} GET
+   Implement a minimal interface that will list current items with their cost, with buttons for: show tags and delete item for each item.
+3.
+4. Note 1:
+   Note 2:
+   running instructions.
+   Note 3: Please take note of any ambiguity or decision you make during the implementation.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

@@ -1,3 +1,5 @@
+import * as axios from "axios";
+
 // ITEM DEFINITION
 // {
 //      ID : {
@@ -118,6 +120,30 @@ export function getItems() {
 			cost: i[0].cost,
 		};
 	});
+}
+
+export function deleteAllGoals() {
+	const items = getItems();
+	return items.filter((item) => !item.id.includes("goal"));
+}
+
+export function updateHatsPrice() {
+	const hatsItems = getItems().filter((item) => item.id.startsWith("hat"));
+	return hatsItems.map((item) => {
+		const newItem = { ...item, cost: item.cost * 2 };
+		return newItem;
+	});
+}
+
+export function getItemsByTags(tagsArray) {
+	const items = getItems();
+	return items.filter((item) => item.tags.every((tag) => tagsArray.includes(tag)));
+}
+
+export async function checkAvaliability(itemId) {
+	const res = await axios.get(`http://pdev-gojiverse.bluegoji.com/stock/${itemId}`);
+	if (res.data) return true;
+	return false;
 }
 
 // id: "shirt_red",
